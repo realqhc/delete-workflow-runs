@@ -4,7 +4,7 @@ author: "Mattraks"
 inputs:
   token:
     description: "GitHub authentication token"
-    required: true
+    required: false
     default: ${{ github.token }}
   baseUrl:
     description: "GitHub API base URL (for GitHub Enterprise)"
@@ -12,16 +12,20 @@ inputs:
     default: "https://api.github.com"
   repository:
     description: "Repository name in {owner}/{repo} format"
-    required: true
+    required: false
     default: ${{ github.repository }}
   retain_days:
     description: "Number of days to retain workflow runs"
-    required: true
+    required: false
     default: "30"
   keep_minimum_runs:
-    description: "Minimum number of runs to keep per workflow"
-    required: true
+    description: "Minimum number of runs to keep per workflow (or per day if use_daily_retention is true)"
+    required: false
     default: "6"
+  use_daily_retention:
+    description: "If true, keep_minimum_runs will be applied per day instead of overall"
+    required: false
+    default: "false"
   delete_workflow_pattern:
     description: "Workflow name or filename pattern (omit for all)"
     required: false
